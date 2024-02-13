@@ -1,89 +1,221 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import {
   Container, Grid, Card, CardContent, CardActions, Typography,
-  FormControl, FormLabel, Input, Button, Table, Divider
+  FormControl, FormLabel, Input, Button, Table, Divider, Alert, Stack
 } from '@mui/joy';
-import { users } from '../Data/users_data';
+import { User } from '../Service/DashboardService';
+import { dashboardService, authenticationService, USER_ID } from '../instances';
 
 const Dashboard = () => {
+  const initialValues = {
+    branchId: NaN,
+    userName: '',
+    firstName: '',
+    middleName: '',
+    lastName: '',
+    position: '',
+    password: '',
+  };
+  const [usersData, setUsersData] = useState<User[]>([]);
+  const [username, setUsername] = useState<string | null>();
+  const [userForm, setUserForm] = useState(initialValues);
+
+  const [error, setError] = useState({
+    branchId: false,
+    userName: false,
+    password: false,
+  });
+
+  const [alertState, setAlertState] = useState({
+    show: false,
+    message: '',
+    title: '',
+    errorColor: false,
+  });
+
+  const getUsers = useCallback(async () => {
+    try {
+      const data = await dashboardService.getAllUsers();
+      setUsersData(data);
+    } catch (err) {
+      console.log(err);
+    }
+  }, [usersData]);
+
+  const handleChange = (e: any) => {
+    const { name, value } = e.target;
+    setUserForm({
+      ...userForm,
+      [name]: value,
+    });
+  }
+
+  const resetFields = async (e: any) => {
+    setUserForm(initialValues);
+    setAlertState({
+      ...alertState,
+      show: false
+    });
+  };
+
+  const validateForm = () => {
+    const hasMatchBranchId = usersData.find((u) => { return u.branchId === userForm.branchId });
+    setError({
+      branchId: userForm.branchId.toString() == '',
+      userName: userForm.userName == '',
+      password: userForm.password == ''
+    });
+
+    if (hasMatchBranchId) {
+      setError({
+        ...error,
+        branchId: true,
+      });
+      setAlertState({
+        show: true,
+        message: 'Branch ID already exists.',
+        title: 'Error',
+        errorColor: true,
+      });
+      return false;
+    }
+
+    const invalidFields = userForm.branchId.toString() == '' || userForm.userName == '' || userForm.password == '';
+    if (invalidFields) {
+      setAlertState({
+        show: true,
+        message: 'Please fill in required fields.',
+        title: 'Error',
+        errorColor: true,
+      });
+    }
+    return !invalidFields;
+  }
+
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+    if(validateForm() === true) {
+      setUsersData(prev => [...prev, userForm]);
+      setAlertState({
+        show: true,
+        message: 'Successfully added user!',
+        title: 'Success',
+        errorColor: false
+      });
+    }
+  }
+
+  const removeRecord = async (id: number) => {
+    setUsersData(prev => {
+      const idx = prev.findIndex((user) => user.branchId == id);
+      prev.splice(idx, 1)
+      return [...prev];
+    });
+  };
+
+  useEffect(() => {
+    if (sessionStorage.getItem(USER_ID) ) {
+      setUsername(sessionStorage.getItem(USER_ID));
+      getUsers();
+    } else {
+      authenticationService.logout();
+    }
+  }, [username]);
+
   return (
     <Container>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} sx={{ marginTop: '1em' }}>
         <Grid xs={8}>
-          <Typography level="h2">User</Typography>
+          <Typography level="h2">{username}</Typography>
         </Grid>
         <Grid xs={4} justifyContent={'flex-end'}>
-          <Button size="lg">Logout</Button>
+          <Button size="lg" 
+            onClick={() => authenticationService.logout()} 
+            sx={{ marginLeft: 'auto', display: 'block' }}>Logout</Button>
         </Grid>
       </Grid>
-      <Divider />
+      <Divider sx={{ my: 1 }} />
       <Grid container spacing={2}>
       <Grid md={4} xs={12}>
-        {/* <Item>xs=8</Item> */}
         <Card>
           <CardContent>
-            <Typography level="title-lg">Login</Typography>
-            <FormControl sx={{ gridColumn: '1/-1' }}>
-              <FormLabel>Branch ID</FormLabel>
-              <Input placeholder="Branch ID"  />
-            </FormControl>
-            <FormControl sx={{ gridColumn: '1/-1' }}>
-              <FormLabel>Username</FormLabel>
-              <Input placeholder="Username"  />
-            </FormControl>
-            <FormControl sx={{ gridColumn: '1/-1' }}>
-              <FormLabel>First Name</FormLabel>
-              <Input placeholder="First Name" />
-            </FormControl>
-            <FormControl sx={{ gridColumn: '1/-1' }}>
-              <FormLabel>Middle Name</FormLabel>
-              <Input placeholder="Middle Name" />
-            </FormControl>
-            <FormControl sx={{ gridColumn: '1/-1' }}>
-              <FormLabel>Last Name</FormLabel>
-              <Input placeholder="Last Name" />
-            </FormControl>
-            <FormControl sx={{ gridColumn: '1/-1' }}>
-              <FormLabel>Position</FormLabel>
-              <Input placeholder="Position" />
-            </FormControl>
-            <FormControl sx={{ gridColumn: '1/-1' }}>
-              <FormLabel>Password</FormLabel>
-              <Input placeholder="Password" type='password' />
-            </FormControl>
-            <CardActions sx={{ gridColumn: '1/-1' }}>
-              <Button variant="outlined" color="primary">
-                Reset
-              </Button>
-              <Button variant="solid" color="primary">
-                Add
-              </Button>
-          </CardActions>
+            <Typography level="title-lg">Add user</Typography>
+            <form id="dashboard-form" onSubmit={handleSubmit} autoComplete="false">
+              <Stack spacing={1}>
+                <FormControl sx={{ gridColumn: '1/-1' }}>
+                  <FormLabel required>Branch ID</FormLabel>
+                  <Input placeholder="Branch ID" name="branchId" size="sm" onChange={handleChange} value={userForm.branchId} type="number" error={error.branchId} />
+                </FormControl>
+                <FormControl sx={{ gridColumn: '1/-1' }}>
+                  <FormLabel required>Username</FormLabel>
+                  <Input placeholder="Username" name="userName" size="sm" onChange={handleChange} value={userForm.userName} error={error.userName} />
+                </FormControl>
+                <FormControl sx={{ gridColumn: '1/-1' }}>
+                  <FormLabel>First Name</FormLabel>
+                  <Input placeholder="First Name" name="firstName" size="sm" onChange={handleChange} value={userForm.firstName}/>
+                </FormControl>
+                <FormControl sx={{ gridColumn: '1/-1' }}>
+                  <FormLabel>Middle Name</FormLabel>
+                  <Input placeholder="Middle Name" name="middleName" size="sm" onChange={handleChange} value={userForm.middleName} />
+                </FormControl>
+                <FormControl sx={{ gridColumn: '1/-1' }}>
+                  <FormLabel>Last Name</FormLabel>
+                  <Input placeholder="Last Name" name="lastName" size="sm" onChange={handleChange} value={userForm.lastName} />
+                </FormControl>
+                <FormControl sx={{ gridColumn: '1/-1' }}>
+                  <FormLabel>Position</FormLabel>
+                  <Input placeholder="Position" name="position" size="sm" onChange={handleChange} value={userForm.position} />
+                </FormControl>
+                <FormControl sx={{ gridColumn: '1/-1' }}>
+                  <FormLabel required>Password</FormLabel>
+                  <Input placeholder="Password" type="password" size="sm" name="password" onChange={handleChange} value={userForm.password} error={error.password} />
+                </FormControl>
+
+                {alertState.show ? <Alert
+                    sx={{ alignItems: 'flex-start' }}
+                    variant="soft"
+                    color={alertState.errorColor ? 'danger' : 'success'}
+                    title={alertState.title}>
+                    <Typography level="body-sm" color={alertState.errorColor ? 'danger' : 'success'}>
+                      {alertState.message}
+                    </Typography>
+                  </Alert> : ''
+                }
+                <CardActions sx={{ gridColumn: '1/-1' }}>
+                  <Button variant="outlined" color="primary" size="sm" onClick={resetFields}>
+                    Reset
+                  </Button>
+                  <Button variant="solid" color="primary" size="sm" type="submit">
+                    Add
+                  </Button>
+              </CardActions>
+            </Stack>
+          </form>
           </CardContent>
         </Card>
       </Grid>
       <Grid md={8} xs={12}>
       <Table>
-      <thead>
-        <tr>
-          <th style={{ width: '5%' }}>#</th>
-          <th style={{ width: '10%' }}>Branch ID</th>
-          <th>Name</th>
-          <th>Position</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        {users.map((item, i) => (
-          <tr key={`item-${item.branchId}`}>
-            <td>{i + 1}</td>
-            <td>{item.branchId}</td>
-            <td>{`${item.firstName} ${item.middleName} ${item.lastName}`}</td>
-            <td>{item.position}</td>
-            <td><Button color="danger">Remove</Button></td>
+        <thead>
+          <tr>
+            <th style={{ width: '5%' }}>#</th>
+            <th style={{ width: '10%' }}>Branch ID</th>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Action</th>
           </tr>
-        ))}
-      </tbody>
+        </thead>
+        <tbody>
+          {usersData.map((item: User, i: number) => (
+            <tr key={`item-${item.branchId}`}>
+              <td>{i + 1}</td>
+              <td>{item.branchId}</td>
+              <td>{`${item.firstName} ${item.middleName} ${item.lastName}`}</td>
+              <td>{item.position}</td>
+              <td><Button color="danger" onClick={() => removeRecord(item.branchId)}>Remove</Button></td>
+            </tr>
+          ))}
+        </tbody>
     </Table>
       </Grid>
       </Grid>
