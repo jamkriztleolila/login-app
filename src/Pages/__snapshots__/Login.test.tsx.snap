@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Login /> match snapshot 1`] = `
+<div>
+  <div
+    class="MuiContainer-root MuiContainer-maxWidthSm css-3e34qi-JoyContainer-root"
+    id="login-container"
+  >
+    <div
+      class="MuiCard-root MuiCard-vertical MuiCard-variantOutlined MuiCard-colorNeutral MuiCard-sizeMd css-1p3o6sg-JoyCard-root"
+      id="login-card"
+    >
+      <div
+        class="MuiCardContent-root css-14x7z9v-JoyCardContent-root"
+        data-first-child=""
+        data-last-child=""
+      >
+        <h3
+          class="MuiTypography-root MuiTypography-h3 css-1u6q16m-JoyTypography-root"
+        >
+          Login
+        </h3>
+        <form>
+          <div
+            class="MuiStack-root css-1s5gupf-JoyStack-root"
+          >
+            <div
+              class="MuiFormControl-root MuiFormControl-vertical MuiFormControl-sizeMd css-zu7ee1-JoyFormControl-root"
+            >
+              <label
+                class="MuiFormLabel-root css-1ckvkg0-JoyFormLabel-root"
+                for=":r0:"
+                id=":r0:-label"
+              >
+                Branch ID
+              </label>
+              <div
+                class="MuiInput-root MuiInput-variantOutlined MuiInput-colorNeutral MuiInput-sizeMd MuiInput-formControl css-kf85qm-JoyInput-root"
+              >
+                <input
+                  aria-label="branchId"
+                  class="MuiInput-input css-1gw9vc6-JoyInput-input"
+                  id=":r0:"
+                  name="branchId"
+                  placeholder="Branch ID"
+                  type="number"
+                  value="NaN"
+                />
+              </div>
+            </div>
+            <div
+              class="MuiFormControl-root MuiFormControl-vertical MuiFormControl-sizeMd css-zu7ee1-JoyFormControl-root"
+            >
+              <label
+                class="MuiFormLabel-root css-1ckvkg0-JoyFormLabel-root"
+                for=":r1:"
+                id=":r1:-label"
+              >
+                Username
+              </label>
+              <div
+                class="MuiInput-root MuiInput-variantOutlined MuiInput-colorNeutral MuiInput-sizeMd MuiInput-formControl css-kf85qm-JoyInput-root"
+              >
+                <input
+                  aria-label="username"
+                  class="MuiInput-input css-1gw9vc6-JoyInput-input"
+                  id=":r1:"
+                  name="userName"
+                  placeholder="Username"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class="MuiFormControl-root MuiFormControl-vertical MuiFormControl-sizeMd css-zu7ee1-JoyFormControl-root"
+            >
+              <label
+                class="MuiFormLabel-root css-1ckvkg0-JoyFormLabel-root"
+                for=":r2:"
+                id=":r2:-label"
+              >
+                Password
+              </label>
+              <div
+                class="MuiInput-root MuiInput-variantOutlined MuiInput-colorNeutral MuiInput-sizeMd MuiInput-formControl css-kf85qm-JoyInput-root"
+              >
+                <input
+                  aria-label="password"
+                  class="MuiInput-input css-1gw9vc6-JoyInput-input"
+                  id=":r2:"
+                  name="password"
+                  placeholder="Password"
+                  type="password"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class="MuiCardActions-root css-1tzdmyt-JoyCardActions-root"
+            >
+              <button
+                class="MuiButton-root MuiButton-variantSolid MuiButton-colorPrimary MuiButton-sizeLg css-1b3i8us-JoyButton-root"
+                type="submit"
+              >
+                Login
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+`;

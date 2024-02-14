@@ -1,0 +1,304 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Dashboard /> match snapshot 1`] = `
+<div>
+  <div
+    class="MuiContainer-root MuiContainer-maxWidthLg css-pv8j0-JoyContainer-root"
+  >
+    <div
+      class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-row MuiGrid-spacing-xs-2 css-1ifwdrn-JoyGrid-root"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-direction-xs-row MuiGrid-grid-xs-8 css-1jigpui-JoyGrid-root"
+      >
+        <h2
+          class="MuiTypography-root MuiTypography-h2 css-x5jxhy-JoyTypography-root"
+        />
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-direction-xs-row MuiGrid-grid-xs-4 css-2pud3i-JoyGrid-root"
+      >
+        <button
+          aria-label="logoutBtn"
+          class="MuiButton-root MuiButton-variantSolid MuiButton-colorPrimary MuiButton-sizeLg css-1hh6q5m-JoyButton-root"
+          type="button"
+        >
+          Logout
+        </button>
+      </div>
+    </div>
+    <hr
+      class="MuiDivider-root MuiDivider-horizontal css-16a0t0a-JoyDivider-root"
+    />
+    <div
+      class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-row MuiGrid-spacing-xs-2 css-1ubpz9o-JoyGrid-root"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-direction-xs-row MuiGrid-grid-md-4 MuiGrid-grid-xs-12 css-dq3jzk-JoyGrid-root"
+      >
+        <div
+          class="MuiCard-root MuiCard-vertical MuiCard-variantOutlined MuiCard-colorNeutral MuiCard-sizeMd css-1p3o6sg-JoyCard-root"
+        >
+          <div
+            class="MuiCardContent-root css-1wk5k0m-JoyCardContent-root"
+            data-first-child=""
+            data-last-child=""
+          >
+            <p
+              class="MuiTypography-root MuiTypography-title-lg css-ar9ysw-JoyTypography-root"
+            >
+              Add user
+            </p>
+            <form
+              autocomplete="false"
+              id="dashboard-form"
+            >
+              <div
+                class="MuiStack-root css-1s5gupf-JoyStack-root"
+              >
+                <div
+                  class="MuiFormControl-root MuiFormControl-vertical MuiFormControl-sizeMd css-zu7ee1-JoyFormControl-root"
+                >
+                  <label
+                    class="MuiFormLabel-root css-1ckvkg0-JoyFormLabel-root"
+                    for=":r0:"
+                    id=":r0:-label"
+                    required=""
+                  >
+                    Branch ID
+                    <span
+                      aria-hidden="true"
+                      class="MuiFormLabel-asterisk css-3w38ak-JoyFormLabel-asterisk"
+                    >
+                       
+                      *
+                    </span>
+                  </label>
+                  <div
+                    class="MuiInput-root MuiInput-variantOutlined MuiInput-colorNeutral MuiInput-sizeSm MuiInput-formControl css-1534vyt-JoyInput-root"
+                  >
+                    <input
+                      aria-label="branchId"
+                      class="MuiInput-input css-1gw9vc6-JoyInput-input"
+                      id=":r0:"
+                      name="branchId"
+                      placeholder="Branch ID"
+                      type="number"
+                      value="NaN"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="MuiFormControl-root MuiFormControl-vertical MuiFormControl-sizeMd css-zu7ee1-JoyFormControl-root"
+                >
+                  <label
+                    class="MuiFormLabel-root css-1ckvkg0-JoyFormLabel-root"
+                    for=":r1:"
+                    id=":r1:-label"
+                    required=""
+                  >
+                    Username
+                    <span
+                      aria-hidden="true"
+                      class="MuiFormLabel-asterisk css-3w38ak-JoyFormLabel-asterisk"
+                    >
+                       
+                      *
+                    </span>
+                  </label>
+                  <div
+                    class="MuiInput-root MuiInput-variantOutlined MuiInput-colorNeutral MuiInput-sizeSm MuiInput-formControl css-1534vyt-JoyInput-root"
+                  >
+                    <input
+                      aria-label="username"
+                      class="MuiInput-input css-1gw9vc6-JoyInput-input"
+                      id=":r1:"
+                      name="userName"
+                      placeholder="Username"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div
+                  class="MuiFormControl-root MuiFormControl-vertical MuiFormControl-sizeMd css-zu7ee1-JoyFormControl-root"
+                >
+                  <label
+                    class="MuiFormLabel-root css-1ckvkg0-JoyFormLabel-root"
+                    for=":r2:"
+                    id=":r2:-label"
+                  >
+                    First Name
+                  </label>
+                  <div
+                    class="MuiInput-root MuiInput-variantOutlined MuiInput-colorNeutral MuiInput-sizeSm MuiInput-formControl css-1534vyt-JoyInput-root"
+                  >
+                    <input
+                      aria-label="firstName"
+                      class="MuiInput-input css-1gw9vc6-JoyInput-input"
+                      id=":r2:"
+                      name="firstName"
+                      placeholder="First Name"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div
+                  class="MuiFormControl-root MuiFormControl-vertical MuiFormControl-sizeMd css-zu7ee1-JoyFormControl-root"
+                >
+                  <label
+                    class="MuiFormLabel-root css-1ckvkg0-JoyFormLabel-root"
+                    for=":r3:"
+                    id=":r3:-label"
+                  >
+                    Middle Name
+                  </label>
+                  <div
+                    class="MuiInput-root MuiInput-variantOutlined MuiInput-colorNeutral MuiInput-sizeSm MuiInput-formControl css-1534vyt-JoyInput-root"
+                  >
+                    <input
+                      aria-label="middleName"
+                      class="MuiInput-input css-1gw9vc6-JoyInput-input"
+                      id=":r3:"
+                      name="middleName"
+                      placeholder="Middle Name"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div
+                  class="MuiFormControl-root MuiFormControl-vertical MuiFormControl-sizeMd css-zu7ee1-JoyFormControl-root"
+                >
+                  <label
+                    class="MuiFormLabel-root css-1ckvkg0-JoyFormLabel-root"
+                    for=":r4:"
+                    id=":r4:-label"
+                  >
+                    Last Name
+                  </label>
+                  <div
+                    class="MuiInput-root MuiInput-variantOutlined MuiInput-colorNeutral MuiInput-sizeSm MuiInput-formControl css-1534vyt-JoyInput-root"
+                  >
+                    <input
+                      aria-label="lastName"
+                      class="MuiInput-input css-1gw9vc6-JoyInput-input"
+                      id=":r4:"
+                      name="lastName"
+                      placeholder="Last Name"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div
+                  class="MuiFormControl-root MuiFormControl-vertical MuiFormControl-sizeMd css-zu7ee1-JoyFormControl-root"
+                >
+                  <label
+                    class="MuiFormLabel-root css-1ckvkg0-JoyFormLabel-root"
+                    for=":r5:"
+                    id=":r5:-label"
+                  >
+                    Position
+                  </label>
+                  <div
+                    class="MuiInput-root MuiInput-variantOutlined MuiInput-colorNeutral MuiInput-sizeSm MuiInput-formControl css-1534vyt-JoyInput-root"
+                  >
+                    <input
+                      aria-label="position"
+                      class="MuiInput-input css-1gw9vc6-JoyInput-input"
+                      id=":r5:"
+                      name="position"
+                      placeholder="Position"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div
+                  class="MuiFormControl-root MuiFormControl-vertical MuiFormControl-sizeMd css-zu7ee1-JoyFormControl-root"
+                >
+                  <label
+                    class="MuiFormLabel-root css-1ckvkg0-JoyFormLabel-root"
+                    for=":r6:"
+                    id=":r6:-label"
+                    required=""
+                  >
+                    Password
+                    <span
+                      aria-hidden="true"
+                      class="MuiFormLabel-asterisk css-3w38ak-JoyFormLabel-asterisk"
+                    >
+                       
+                      *
+                    </span>
+                  </label>
+                  <div
+                    class="MuiInput-root MuiInput-variantOutlined MuiInput-colorNeutral MuiInput-sizeSm MuiInput-formControl css-1534vyt-JoyInput-root"
+                  >
+                    <input
+                      aria-label="password"
+                      class="MuiInput-input css-1gw9vc6-JoyInput-input"
+                      id=":r6:"
+                      name="password"
+                      placeholder="Password"
+                      type="password"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div
+                  class="MuiCardActions-root css-3nynj0-JoyCardActions-root"
+                >
+                  <button
+                    aria-label="resetForm"
+                    class="MuiButton-root MuiButton-variantOutlined MuiButton-colorPrimary MuiButton-sizeMd css-wbn1ta-JoyButton-root"
+                    type="button"
+                  >
+                    Reset
+                  </button>
+                  <button
+                    aria-label="addUser"
+                    class="MuiButton-root MuiButton-variantSolid MuiButton-colorPrimary MuiButton-sizeMd css-cua13l-JoyButton-root"
+                    type="submit"
+                  >
+                    Add
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-direction-xs-row MuiGrid-grid-md-8 MuiGrid-grid-xs-12 css-1dc0y22-JoyGrid-root"
+      >
+        <table
+          class="MuiTable-root MuiTable-borderAxisXBetween MuiTable-variantPlain MuiTable-colorNeutral MuiTable-sizeMd css-1mbiu7x-JoyTable-root"
+        >
+          <thead>
+            <tr>
+              <th
+                style="width: 5%;"
+              >
+                #
+              </th>
+              <th
+                style="width: 10%;"
+              >
+                Branch ID
+              </th>
+              <th>
+                Name
+              </th>
+              <th>
+                Position
+              </th>
+              <th>
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody />
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+`;
