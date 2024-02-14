@@ -40,7 +40,7 @@ const Dashboard = () => {
     } catch (err) {
       console.log(err);
     }
-  }, [usersData]);
+  }, []);
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -61,9 +61,9 @@ const Dashboard = () => {
   const validateForm = () => {
     const hasMatchBranchId = usersData.find((u) => { return u.branchId === userForm.branchId });
     setError({
-      branchId: userForm.branchId.toString() == '',
-      userName: userForm.userName == '',
-      password: userForm.password == ''
+      branchId: userForm.branchId.toString() === '' || userForm.branchId.toString() === 'NaN',
+      userName: userForm.userName === '',
+      password: userForm.password === ''
     });
 
     if (hasMatchBranchId) {
@@ -80,7 +80,7 @@ const Dashboard = () => {
       return false;
     }
 
-    const invalidFields = userForm.branchId.toString() == '' || userForm.userName == '' || userForm.password == '';
+    const invalidFields = userForm.branchId.toString() === '' || userForm.branchId.toString() === 'NaN' || userForm.userName === '' || userForm.password === '';
     if (invalidFields) {
       setAlertState({
         show: true,
@@ -107,7 +107,7 @@ const Dashboard = () => {
 
   const removeRecord = async (id: number) => {
     setUsersData(prev => {
-      const idx = prev.findIndex((user) => user.branchId == id);
+      const idx = prev.findIndex((user) => user.branchId === id);
       prev.splice(idx, 1)
       return [...prev];
     });
@@ -120,7 +120,7 @@ const Dashboard = () => {
     } else {
       authenticationService.logout();
     }
-  }, [username]);
+  }, [username, getUsers]);
 
   return (
     <Container>
@@ -131,7 +131,7 @@ const Dashboard = () => {
         <Grid xs={4} justifyContent={'flex-end'}>
           <Button size="lg" 
             onClick={() => authenticationService.logout()} 
-            sx={{ marginLeft: 'auto', display: 'block' }}>Logout</Button>
+            sx={{ marginLeft: 'auto', display: 'block' }} aria-label="logoutBtn">Logout</Button>
         </Grid>
       </Grid>
       <Divider sx={{ my: 1 }} />
@@ -144,31 +144,78 @@ const Dashboard = () => {
               <Stack spacing={1}>
                 <FormControl sx={{ gridColumn: '1/-1' }}>
                   <FormLabel required>Branch ID</FormLabel>
-                  <Input placeholder="Branch ID" name="branchId" size="sm" onChange={handleChange} value={userForm.branchId} type="number" error={error.branchId} />
+                  <Input
+                    placeholder="Branch ID"
+                    name="branchId"
+                    size="sm"
+                    onChange={handleChange}
+                    value={userForm.branchId}
+                    type="number"
+                    error={error.branchId}
+                    slotProps={{ input: { "aria-label": "branchId" } }} />
                 </FormControl>
                 <FormControl sx={{ gridColumn: '1/-1' }}>
                   <FormLabel required>Username</FormLabel>
-                  <Input placeholder="Username" name="userName" size="sm" onChange={handleChange} value={userForm.userName} error={error.userName} />
+                  <Input
+                    placeholder="Username"
+                    name="userName"
+                    size="sm"
+                    onChange={handleChange}
+                    value={userForm.userName}
+                    error={error.userName}
+                    slotProps={{ input: { "aria-label": "username" } }}  />
                 </FormControl>
                 <FormControl sx={{ gridColumn: '1/-1' }}>
                   <FormLabel>First Name</FormLabel>
-                  <Input placeholder="First Name" name="firstName" size="sm" onChange={handleChange} value={userForm.firstName}/>
+                  <Input
+                    placeholder="First Name"
+                    name="firstName"
+                    size="sm"
+                    onChange={handleChange}
+                    value={userForm.firstName}
+                    slotProps={{ input: { "aria-label": "firstName" } }} />
                 </FormControl>
                 <FormControl sx={{ gridColumn: '1/-1' }}>
                   <FormLabel>Middle Name</FormLabel>
-                  <Input placeholder="Middle Name" name="middleName" size="sm" onChange={handleChange} value={userForm.middleName} />
+                  <Input
+                    placeholder="Middle Name"
+                    name="middleName"
+                    size="sm"
+                    onChange={handleChange}
+                    value={userForm.middleName}
+                    slotProps={{ input: { "aria-label": "middleName" } }} />
                 </FormControl>
                 <FormControl sx={{ gridColumn: '1/-1' }}>
                   <FormLabel>Last Name</FormLabel>
-                  <Input placeholder="Last Name" name="lastName" size="sm" onChange={handleChange} value={userForm.lastName} />
+                  <Input
+                    placeholder="Last Name"
+                    name="lastName"
+                    size="sm"
+                    onChange={handleChange}
+                    value={userForm.lastName}
+                    slotProps={{ input: { "aria-label": "lastName" } }} />
                 </FormControl>
                 <FormControl sx={{ gridColumn: '1/-1' }}>
                   <FormLabel>Position</FormLabel>
-                  <Input placeholder="Position" name="position" size="sm" onChange={handleChange} value={userForm.position} />
+                  <Input
+                    placeholder="Position"
+                    name="position"
+                    size="sm"
+                    onChange={handleChange}
+                    value={userForm.position}
+                    slotProps={{ input: { "aria-label": "position" } }} />
                 </FormControl>
                 <FormControl sx={{ gridColumn: '1/-1' }}>
                   <FormLabel required>Password</FormLabel>
-                  <Input placeholder="Password" type="password" size="sm" name="password" onChange={handleChange} value={userForm.password} error={error.password} />
+                  <Input
+                    placeholder="Password"
+                    type="password"
+                    size="sm"
+                    name="password"
+                    onChange={handleChange}
+                    value={userForm.password}
+                    error={error.password}
+                    slotProps={{ input: { "aria-label": "password" } }} />
                 </FormControl>
 
                 {alertState.show ? <Alert
@@ -181,11 +228,11 @@ const Dashboard = () => {
                     </Typography>
                   </Alert> : ''
                 }
-                <CardActions sx={{ gridColumn: '1/-1' }}>
-                  <Button variant="outlined" color="primary" size="sm" onClick={resetFields}>
+                <CardActions sx={{ gridColumn: '1/-1', marginLeft: 'auto !important' }} >
+                  <Button variant="outlined" color="primary" size="md" onClick={resetFields} aria-label="resetForm">
                     Reset
                   </Button>
-                  <Button variant="solid" color="primary" size="sm" type="submit">
+                  <Button variant="solid" color="primary" size="md" type="submit" aria-label="addUser">
                     Add
                   </Button>
               </CardActions>
@@ -212,7 +259,11 @@ const Dashboard = () => {
               <td>{item.branchId}</td>
               <td>{`${item.firstName} ${item.middleName} ${item.lastName}`}</td>
               <td>{item.position}</td>
-              <td><Button color="danger" onClick={() => removeRecord(item.branchId)}>Remove</Button></td>
+              <td><Button
+                color="danger"
+                onClick={() => removeRecord(item.branchId)}
+                aria-label={`remove-${item.branchId}`}
+                >Remove</Button></td>
             </tr>
           ))}
         </tbody>

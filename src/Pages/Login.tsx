@@ -32,11 +32,12 @@ const Login = () => {
   });
 
   const validateForm = () => {
-    const invalidFields = loginForm.branchId.toString() == '' || loginForm.userName == '' || loginForm.password == '';
+    const invalidFields = loginForm.branchId.toString() === '' || loginForm.branchId.toString() === 'NaN' || loginForm.userName === '' || loginForm.password === '';
+    console.log("as" + loginForm.branchId.toString());
     setError({
-      branchId: loginForm.branchId.toString() == '',
-      userName: loginForm.userName == '',
-      password: loginForm.password == ''
+      branchId: loginForm.branchId.toString() === '' || loginForm.branchId.toString() === 'NaN',
+      userName: loginForm.userName === '',
+      password: loginForm.password === ''
     });
     setErrorState({
       value: true,
@@ -76,9 +77,10 @@ const Login = () => {
                   placeholder="Branch ID"
                   name="branchId" 
                   onChange={handleChange}
-                  onBlur={() => validateForm}
+                  value={loginForm.branchId}
                   error={error.branchId}
-                  type="number" />
+                  type="number"
+                  slotProps={{ input: { "aria-label": "branchId" } }} />
               </FormControl>
               <FormControl sx={{ gridColumn: '1/-1' }}>
                 <FormLabel>Username</FormLabel>
@@ -86,7 +88,9 @@ const Login = () => {
                   placeholder="Username"
                   name="userName"
                   onChange={handleChange}
-                  error={error.userName} />
+                  value={loginForm.userName}
+                  error={error.userName}
+                  slotProps={{ input: { "aria-label": "username" } }} />
               </FormControl>
               <FormControl sx={{ gridColumn: '1/-1' }}>
                 <FormLabel>Password</FormLabel>
@@ -95,10 +99,12 @@ const Login = () => {
                   type="password"
                   name="password"
                   onChange={handleChange}
-                  error={error.password} />
+                  value={loginForm.password}
+                  error={error.password}
+                  slotProps={{ input: { "aria-label": "password" } }} />
               </FormControl>
               <CardActions sx={{ gridColumn: '1/-1' }}>
-                <Button variant="solid" color="primary" type="submit">
+                <Button variant="solid" color="primary" type="submit" size="lg">
                   Login
                 </Button>
               </CardActions>
