@@ -33,7 +33,6 @@ const Login = () => {
 
   const validateForm = () => {
     const invalidFields = loginForm.branchId.toString() === '' || loginForm.branchId.toString() === 'NaN' || loginForm.userName === '' || loginForm.password === '';
-    console.log("as" + loginForm.branchId.toString());
     setError({
       branchId: loginForm.branchId.toString() === '' || loginForm.branchId.toString() === 'NaN',
       userName: loginForm.userName === '',
