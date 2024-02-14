@@ -1,12 +1,13 @@
 # Login App
-Sample login Screenshot:
+Sample Login screenshot:
 ![alt text](https://i.imgur.com/n7fy9yd.png)
 ![alt text](https://i.imgur.com/gK0R1TI.png)
 ![alt text](https://i.imgur.com/NFSxDMQ.png)
+Sample Dashboard screenshot:
 ![alt text](https://i.imgur.com/uV1xwUj.png)
 ![alt text](https://i.imgur.com/T7T6TY9.png)
 
-`Unit tests results`
+## Unit Tests results
 ![alt text](https://i.imgur.com/UaZ801N.png)
 
 # Getting Started with Create React App
