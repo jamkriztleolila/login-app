@@ -59,13 +59,13 @@ const Dashboard = () => {
   };
 
   const validateForm = () => {
-    const hasMatchBranchId = usersData.find((u) => { return u.branchId === userForm.branchId });
     setError({
       branchId: userForm.branchId.toString() === '' || userForm.branchId.toString() === 'NaN',
       userName: userForm.userName === '',
       password: userForm.password === ''
     });
-
+    
+    const hasMatchBranchId = usersData.find((u) => { return u.branchId === userForm.branchId });
     if (hasMatchBranchId) {
       setError({
         ...error,
@@ -94,7 +94,7 @@ const Dashboard = () => {
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-    if(validateForm() === true) {
+    if(validateForm()) {
       setUsersData(prev => [...prev, userForm]);
       setAlertState({
         show: true,
